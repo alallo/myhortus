@@ -4,6 +4,7 @@
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.5.1" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.12.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
@@ -20,5 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\hortus.nosqldb\hortus.nosqldb.csproj" />
     <ProjectReference Include="..\hortus.entities\hortus.entities.csproj" />
+    <ProjectReference Include="..\hortus.storage\hortus.storage.csproj" />
   </ItemGroup>
 </Project>

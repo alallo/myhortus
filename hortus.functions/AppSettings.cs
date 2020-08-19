@@ -6,6 +6,10 @@ namespace hortus.functions
 
         public string CosmosDbName { get; set; }
 
-        public string ContainerName { get; set; }
+        public string CosmosDbContainerName { get; set; }
+
+        public string StorageConnectionString { get; set; }
+
+        public string StorageImagesContainerName { get; set; }
     }
 }

@@ -15,7 +15,9 @@ namespace hortus.functions
                 var settings = new AppSettings();
                 settings.CosmosDbConnectionString= config["CosmosDbConnectionString"];
                 settings.CosmosDbName = config["CosmosDbName"];
-                settings.ContainerName = config["CosmosContainerName"];
+                settings.CosmosDbContainerName = config["CosmosContainerName"];
+                settings.StorageConnectionString = config["AzureWebJobsStorage"];
+                settings.StorageImagesContainerName = config["StorageContainerName"];
 
                 return settings;
         }
