@@ -26,7 +26,7 @@ namespace hortus.functions
             CosmosClient client = new CosmosClient(appSettings.CosmosDbConnectionString);
             CosmosDbService<GardenStory> cosmosDbService = new CosmosDbService<GardenStory>(client, appSettings.CosmosDbName, appSettings.CosmosDbContainerName);
             DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(appSettings.CosmosDbName);
-            await database.Database.CreateContainerIfNotExistsAsync(appSettings.CosmosDbContainerName, "/postcode");
+            await database.Database.CreateContainerIfNotExistsAsync(appSettings.CosmosDbContainerName, appSettings.CosmosDbPartitionKey);
 
             return cosmosDbService;
         }

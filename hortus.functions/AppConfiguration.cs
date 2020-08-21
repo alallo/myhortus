@@ -18,6 +18,7 @@ namespace hortus.functions
                 settings.CosmosDbContainerName = config["CosmosContainerName"];
                 settings.StorageConnectionString = config["AzureWebJobsStorage"];
                 settings.StorageImagesContainerName = config["StorageContainerName"];
+                settings.CosmosDbPartitionKey = config["CosmosDbPartitionKey"];
 
                 return settings;
         }

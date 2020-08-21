@@ -25,6 +25,8 @@ namespace hortus.functions
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = "hortus/story/uploadimage/{id}")] HttpRequestMessage req, string id,
             ILogger log)
         {
+            log.LogInformation("UploadStoryImage trigger function processed a request.");
+
             var provider = new MultipartMemoryStreamProvider();
             await req.Content.ReadAsMultipartAsync(provider);
             var file = provider.Contents[0];

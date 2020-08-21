@@ -11,5 +11,7 @@ namespace hortus.functions
         public string StorageConnectionString { get; set; }
 
         public string StorageImagesContainerName { get; set; }
+
+        public string CosmosDbPartitionKey { get; set; }
     }
 }

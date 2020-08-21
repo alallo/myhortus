@@ -25,17 +25,26 @@ namespace hortus.functions
 
         [FunctionName("UploadGardenStory")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "/hortus/story/upload")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "hortus/story/upload/")] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
+            log.LogInformation("UploadGardenStory trigger function processed a request.");
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            GardenStory data = JsonConvert.DeserializeObject<GardenStory>(requestBody);
-            data.Id = Guid.NewGuid().ToString();
-            await dbService.AddItemAsync(data, data.PostCode);
-
-            return new OkResult();
+            var story = JsonConvert.DeserializeObject<GardenStory>(requestBody);
+            if(string.IsNullOrEmpty(story.Id))
+            {           
+                story.Id = Guid.NewGuid().ToString();
+                story.DateCreated = DateTime.Now;
+                story.LastUpdated = DateTime.Now;
+                await dbService.AddItemAsync(story, story.PostCode);
+                return new OkObjectResult(story.Id);
+            }
+            else
+            {
+                story.LastUpdated = DateTime.Now;
+                await dbService.UpdateItemAsync(story.PostCode, story);
+                return new OkResult();
+            }
         }
     }
 }
