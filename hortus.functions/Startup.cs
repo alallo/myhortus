@@ -15,10 +15,10 @@ namespace hortus.functions
         public override void Configure(IFunctionsHostBuilder builder)
         {
             var appSettings = new AppConfiguration().GetAppSettings();
-            builder.Services.AddSingleton<AppSettings>(appSettings);
-            builder.Services.AddSingleton<INoSqlDbService<GardenStory>>(InitializeCosmosClientInstanceAsync(appSettings).GetAwaiter().GetResult());
-            builder.Services.AddSingleton<IImagesStorage>(InitializeStorageClientInstance(appSettings));
-
+            builder.Services
+            .AddSingleton<AppSettings>(appSettings)
+            .AddSingleton<INoSqlDbService<GardenStory>>(InitializeCosmosClientInstanceAsync(appSettings).GetAwaiter().GetResult())
+            .AddSingleton<IImagesStorage>(InitializeStorageClientInstance(appSettings));
         }
 
         private static async Task<CosmosDbService<GardenStory>> InitializeCosmosClientInstanceAsync(AppSettings appSettings)
